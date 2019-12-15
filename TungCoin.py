@@ -166,6 +166,15 @@ def connect_node():
     response = {'message': 'All nodes connected', 'total_nodes': list(blockchain.nodes)}
     return jsonify(response, 201)
     
+# Replace with the longest on nodes if needed
+@app.route('/replace_chain', methods = ['GET'])
+def replace_chain():
+    check = blockchain.replace_change()
+    if check is True:
+        response = {"Message": "Chain is replace", 'chain': blockchain.chain}
+    else:
+        response = {"Message": "Your chain is up to date", 'actual_chain': blockchain.chain}
+    return jsonify(response), 200
 
 
 
